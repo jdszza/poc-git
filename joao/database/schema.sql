@@ -1,0 +1,20 @@
+CREATE DATABASE logistica_loja  IF NOT EXISTS;
+SHOW DATABASES;
+USE logistica_loja;
+CREATE TABLE usuarios IF NOT EXISTS (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(120) UNIQUE,
+    idade INT,
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE pedidos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    produto VARCHAR(100),
+    valor DECIMAL(10,2),
+    criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
